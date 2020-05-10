@@ -11,7 +11,7 @@ public class ReadToArrayList {
 
         String homeFolder = System.getenv("HOMEPATH");
         String fileName = homeFolder + "/Documents/out.txt";
-        //ArrayList<String> words = new ArrayList<String>();
+
         Scanner inputStream = null;
         try {
             //the File class knows how to negotiate the file system to access data
@@ -23,7 +23,6 @@ public class ReadToArrayList {
                 String stringArray[] = line.split(" ");
                 for(int i = 0; i <stringArray.length; i++) {
                     words.add(stringArray[i]);
-
                 }
                 sentencesList.add(words);
             }
@@ -35,6 +34,7 @@ public class ReadToArrayList {
                 inputStream.close();
             }
         }
+
         //get sentence and word number from user, check for validity
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter sentence number: ");
@@ -45,7 +45,7 @@ public class ReadToArrayList {
         }
         System.out.println("Enter word number: ");
         int wordNumber = keyboard.nextInt();
-        if ((wordNumber <= 0) || (wordNumber > sentencesList.get(sentenceNumber).size())) {
+        if ((wordNumber <= 0) || (wordNumber > sentencesList.get((int)(sentenceNumber-1)).size())) {
             System.out.println("Error: No word found at position " + wordNumber);
             System.exit(0);
         }
