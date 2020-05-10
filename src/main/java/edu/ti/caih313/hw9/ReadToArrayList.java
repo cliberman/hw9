@@ -22,10 +22,10 @@ public class ReadToArrayList {
                 String line = inputStream.nextLine();
                 String stringArray[] = line.split(" ");
                 for(int i = 0; i <stringArray.length; i++) {
-                    String s = stringArray[i];
-                    words.add(s);
-                    sentencesList.add(words);
+                    words.add(stringArray[i]);
+
                 }
+                sentencesList.add(words);
             }
         } catch (FileNotFoundException e) {
             //we'll only get here if there was an error opening the file
@@ -39,17 +39,18 @@ public class ReadToArrayList {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter sentence number: ");
         int sentenceNumber = keyboard.nextInt();
-        if ((sentenceNumber < 0) || (sentenceNumber > sentencesList.size())) {
+        if ((sentenceNumber <= 0) || (sentenceNumber > sentencesList.size())) {
             System.out.println("Error: No sentence found at line " + sentenceNumber);
             System.exit(0);
         }
         System.out.println("Enter word number: ");
         int wordNumber = keyboard.nextInt();
-//        if ((wordNumber < 0) || (wordNumber > words.size())) {
-//            System.out.println("Error: No word found at position " + wordNumber);
-//            System.exit(0);
-//        }
+        if ((wordNumber <= 0) || (wordNumber > sentencesList.get(sentenceNumber).size())) {
+            System.out.println("Error: No word found at position " + wordNumber);
+            System.exit(0);
+        }
         //print out requested word
+
         ArrayList desiredSentence = sentencesList.get(sentenceNumber-1);
         Object desiredWord = desiredSentence.get(wordNumber-1);
         System.out.println("The word in sentence " + sentenceNumber + " at position " + wordNumber + " is " + desiredWord + ".");
